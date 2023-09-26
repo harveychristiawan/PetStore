@@ -1,0 +1,194 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NavBar.master.cs" Inherits="PetStore.View.NavBar" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title> Pet Store </title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    nav {
+        padding: 20px;
+        background-color: #001f3f; /* Ubah warna background menjadi biru */
+        display: flex;
+        align-items: center;
+    }
+
+    .linkBtn {
+        margin-left: 10px;
+        margin-right: 10px;
+        color: white;
+        text-decoration: none;
+        background-color: #4b6886;
+    }
+
+    .logo {
+        color: white;
+        margin: 5px;
+    }
+
+    footer {
+        padding: 5px;
+        text-align: center;
+        background-color: #001f3f; /* Ubah warna background menjadi biru */
+        color: white;
+    }
+
+    .title {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .contentClass {
+        background-color: #ffffff;
+        padding: 30px;
+        min-height: 60vh;
+    }
+    
+
+    .imgWidth-100{
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+    }
+
+    .table{
+        padding:0 10px 0 10px;
+    }
+
+    .imgWidth-250 {
+        width: 250px;
+        height: auto;
+    }
+
+    .imgWidth-500 {
+        width: 500px;
+        height: auto;
+    }
+
+    .role {
+        width: 50%;
+       padding-left: 20px;
+        color: white;
+    }
+
+    .role-container {
+        background-color: #4b6886; /* Ubah warna background menjadi biru */
+        padding: 5px;
+
+    }
+
+    .linkBtn {
+        /* ... gaya CSS lainnya ... */
+        padding: 5px 10px; /* Menambahkan padding untuk membuat tombol lebih rapi */
+        border-radius: 5px; /* Menambahkan sudut melengkung pada tombol */
+        transition: background-color 0.3s ease; /* Efek transisi saat hover */
+    }
+
+    .linkBtn:hover {
+        background-color: rgba(255, 255, 255, 0.1); /* Efek latar belakang transparan saat hover */
+    }
+
+    footer {
+  background-color: #001f3f;
+  padding: 40px 0;
+  color: white;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-content {
+      width: 60%;
+    }
+
+    .footer-content h3 {
+      color: white;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .footer-content p {
+      color: white;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .credits {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .credits p {
+      color: white;
+      font-size: 12px;
+    }
+
+
+</style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav>
+            <h1 class="logo">Pet Store</h1>
+            <% if (role == "A")
+                { %> 
+            <asp:LinkButton ID="homepageLink" runat="server" CssClass="linkBtn" OnClick="homepageLink_Click">Home</asp:LinkButton>
+            <asp:LinkButton ID="transactionLink" runat="server" CssClass="linkBtn" OnClick="transactionLink_Click">Transaction</asp:LinkButton>
+            <asp:LinkButton ID="updateProfileLink" runat="server" CssClass="linkBtn" OnClick="updateProfileLink_Click">Update Profile</asp:LinkButton>
+            <asp:LinkButton ID="logoutpageLink1" runat="server" CssClass="linkBtn" OnClick="logoutpageLink_Click">Logout</asp:LinkButton>
+            <%}
+                else if (role == "C")
+                {%>
+            <asp:LinkButton ID="homepageLink2" runat="server" CssClass="linkBtn" OnClick="homepageLink_Click">Home</asp:LinkButton>
+            <asp:LinkButton ID="cartLink" runat="server" CssClass="linkBtn" OnClick="cartLink_Click">Cart</asp:LinkButton>
+            <asp:LinkButton ID="transactionLink2" runat="server" CssClass="linkBtn" OnClick="transactionLink2_Click">Transaction</asp:LinkButton>
+            <asp:LinkButton ID="updateProfileLink2" runat="server" CssClass="linkBtn" OnClick="updateProfileLink_Click">Update Profile</asp:LinkButton>
+            <asp:LinkButton ID="logoutpageLink2" runat="server" CssClass="linkBtn" OnClick="logoutpageLink_Click">Logout</asp:LinkButton>
+            
+            <%}
+                else
+                { %>
+            <asp:LinkButton ID="homepageLink3" runat="server" CssClass="linkBtn" OnClick="homepageLink_Click">Home</asp:LinkButton>
+            <asp:LinkButton ID="loginpageLink" runat="server" CssClass="linkBtn" OnClick="loginpageLink_Click">Login</asp:LinkButton>
+            <asp:LinkButton ID="registerpageLink" runat="server" CssClass="linkBtn" OnClick="registerpageLink_Click">Register</asp:LinkButton>
+            <%} %>
+        </nav>
+        <div class="role-container">
+            <p class="role">You are logged in as a 
+                <asp:Label ID="currentRole" runat="server" Text=""></asp:Label>
+            </p>
+        </div>
+        
+        <div>
+            <asp:ContentPlaceHolder ID="contentBody" runat="server">
+                
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer>
+          <div class="container">
+            <div class="footer-content">
+              <h3>Pet Store</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac justo sed quam eleifend varius sed vitae elit.</p>
+            </div>
+           
+          <div class="credits">
+            <p>Created by Valentinus, Harvey, Hendrik</p>
+          </div>
+        </footer>
+
+    </form>
+</body>
+</html>
